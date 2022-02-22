@@ -12,9 +12,10 @@ const refs = {
     loadMoreBtn: document.querySelector('.load-more'),
 }
 
-refs.loadMoreBtn.hidden = true;
 refs.imageForm.addEventListener('submit', onFormSubmit);
 refs.loadMoreBtn.addEventListener('click', onLoadMore);
+
+refs.loadMoreBtn.hidden = true;
 let pageOfGallery = 1;
 
 function resetPage() {
@@ -33,6 +34,7 @@ function onFormSubmit(e) {
 }
 
 function renderImages(images) {
+    console.log(images);
 
     if (!images.total) {
         Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
@@ -51,9 +53,9 @@ function renderImages(images) {
     }
 
     const markup = [];
-    for (let i = 0; i < images.hits.length; i++) {
-        const elem = images.hits[i];
-        markup.push(imageCard(elem));
+    for (let index = 0; index < images.hits.length; index++) {
+        const element = images.hits[index];
+        markup.push(imageCard(element));
     }
     refs.imageGallery.innerHTML += markup.join('');
     
@@ -75,6 +77,7 @@ function onLoadMore() {
 }
 
 function onFetchError(error) {
+    console.log(error);
     Notiflix.Notify.failure(`Sorry, something going wrong`);
     
 }

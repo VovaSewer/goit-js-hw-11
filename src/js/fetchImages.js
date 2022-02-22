@@ -9,8 +9,9 @@ export async function fetchImages(img) {
     const PER_PAGE = 40;
     const options = `image_type=photo&orientation=horizontal&safesearch=true&page=${pageOfGallery}&per_page=${PER_PAGE}`;
 
+    console.log(`pageGallery ${pageOfGallery++}`);
+
     const response = await axios.get(`${BASE_URL}?key=${API_KEY}&q=${img}&${options}`);
-    console.log(response);
     
     return response.data;
 
