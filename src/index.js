@@ -36,7 +36,12 @@ function onFormSubmit(e) {
 function renderImages(images) {
     console.log(images);
 
-    if (!images.total) {
+    if (images.total === 0) {
+        Notiflix.Notify.failure(`Oh... enter your search!`);
+        refs.loadMoreBtn.hidden = false;
+    }
+
+    else if (!images.total) {
         Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
         refs.loadMoreBtn.hidden = true;
         refs.imageGallery.innerHTML = '';
